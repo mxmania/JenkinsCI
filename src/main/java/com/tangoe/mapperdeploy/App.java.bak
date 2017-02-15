@@ -1,0 +1,15 @@
+package com.tangoe.mapperdeploy;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+		AetherDemo aetherDemo = new AetherDemo();
+		aetherDemo.resolve();
+    }
+}
