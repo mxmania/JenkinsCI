@@ -1,4 +1,8 @@
-package com.tangoe.ci.jenkinsci;
+package com.tangoe.mapperdeploy;
+
+import java.io.File;
+
+import org.codehaus.plexus.util.FileUtils;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -33,6 +37,33 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+    	App app = new App();
+		String localRepo = app.getLocalDownloadRepo();
+		String groupId = app.getGroupId();
+		
+    	try
+    	{
+    		
+    	   	app.downloadArtifactAndDependencies();
+    	   	
+    	   	File file = new File(localRepo+ "\\abc"+ groupId);
+    	   	if(file.exists())
+    	   	{
+    	   		assertTrue( true );
+    	   		//FileUtils.deleteDirectory(file);
+    	   	}
+    	   	else
+    	   	{
+    	   		assertTrue( false );
+    	   	}
+    	}
+    	catch(Exception e)
+    	{
+    		assertTrue(false);
+    	}
+    	finally
+    	{
+    		
+    	}
     }
 }
