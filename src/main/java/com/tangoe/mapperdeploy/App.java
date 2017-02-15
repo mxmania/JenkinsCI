@@ -19,9 +19,24 @@ import org.restlet.data.Protocol;
 public class App 
 {
 	
-	String remoteRepo = "http://blrnexus:8081/nexus/content/repositories/central";
-	String localDownloadRepo = "C:\\Tangoe\\Projects\\MapperDownload";
+	private String remoteRepo = "http://blrnexus:8081/nexus/content/repositories/central";
+	private String localDownloadRepo = "C:\\Tangoe\\Projects\\MapperDownload";
+	private String groupId = "aspectj";
+	private String artifactId = "aspectjlib";
+	private String version = "1.5.3";
+			
 		
+	public String getLocalDownloadRepo() 
+	{
+		return localDownloadRepo;
+	}
+
+
+	public String getGroupId() {
+		return groupId;
+	}
+
+
 	public static void main(String[] args) 
 	{
 		
@@ -30,11 +45,7 @@ public class App
 			
 			App app = new App();
 			app.readRepoMetadata();
-			
-			
-			AetherAPIs aetherAPIs = new AetherAPIs();
-			aetherAPIs.readArtifactAndDependencies(app.remoteRepo, app.localDownloadRepo);
-			
+			app.downloadArtifactAndDependencies();
 			
 												
 		} 
@@ -45,7 +56,14 @@ public class App
 	}
 
 
-	private void readRepoMetadata() throws Exception 
+	public void downloadArtifactAndDependencies() throws Exception
+	{
+		AetherAPIs aetherAPIs = new AetherAPIs();
+		aetherAPIs.downloadArtifactAndDependencies(remoteRepo, localDownloadRepo, groupId, artifactId, version);
+	}
+
+	
+	public void readRepoMetadata() throws Exception 
 	{
 		
 			/*URL url = new URL(remoteRepo);
