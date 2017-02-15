@@ -46,7 +46,7 @@ public class AppTest
     		
     	   	app.downloadArtifactAndDependencies();
     	   	
-    	   	File file = new File(localRepo+ "\\abc"+ groupId);
+    	   	File file = new File(localRepo+ "\\"+ groupId);
     	   	if(file.exists())
     	   	{
     	   		assertTrue( true );
